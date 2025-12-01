@@ -54,6 +54,11 @@ public class BadIOGUI {
         frame.setContentPane(panelz);
         panelz.add(write);
         /*
+         * Ex. 1.02
+         */
+        final JButton read = new JButton();
+        panelz.add(read);
+        /*
          * Handlers
          */
         write.addActionListener(
@@ -73,6 +78,14 @@ public class BadIOGUI {
                         JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
                         e.printStackTrace(); // NOPMD: allowed as this is just an exercise
                     }
+                }
+            }
+        );
+
+        read.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent event) {
+                        System.out.println("sessp");
                 }
             }
         );
