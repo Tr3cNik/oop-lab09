@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 /**
  * A very simple program using a graphical interface.
  * 
@@ -22,28 +23,34 @@ public final class SimpleGUI {
     private final JFrame frame = new JFrame("Salva il testo");
     private final Controller c;
 
+    /**
+     * Constructor for simple GUI.
+     */
     public SimpleGUI() {
         c = new Controller();
-        JPanel panel = new JPanel(new BorderLayout());
-        JTextArea text = new JTextArea();
-        JButton button = new JButton("Save");
+        final JPanel panel = new JPanel(new BorderLayout());
+        final JTextArea text = new JTextArea();
+        final JButton button = new JButton("Save");
         panel.add(text, BorderLayout.NORTH);
         panel.add(button, BorderLayout.SOUTH);
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         button.addActionListener(new ActionListener() {
+            /**
+             * Save the input
+             */
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 try {
                     c.saveInput(text.getText());
-                } catch (IOException e1) {
+                } catch (final IOException ex) {
                     System.out.println("sono esploso"); // NOPMD
                 }
             }
         });
     }
 
-    public void display() {
+    private void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -52,8 +59,13 @@ public final class SimpleGUI {
         frame.pack();
         frame.setVisible(true);
     }
-    
-    public static void main(String[] args) {
+
+    /**
+     * Application entry point.
+     * 
+     * @param args ignored
+     */
+    public static void main(final String[] args) {
         new SimpleGUI().display();
     }
 
