@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Random;
@@ -85,7 +86,14 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent event) {
-                        System.out.println("sessp");
+                    try {
+                        final List<String> list = Files.readAllLines(FileSystems.getDefault().getPath(PATH));
+                        for (final String l : list) {
+                            System.out.println(l); // NOPMD
+                        }
+                    } catch (final IOException e) {
+                        System.out.println("An error occured during the reading of the file"); // NOPMD
+                    }
                 }
             }
         );
