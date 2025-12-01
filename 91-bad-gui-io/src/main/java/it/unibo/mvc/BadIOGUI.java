@@ -47,6 +47,13 @@ public class BadIOGUI {
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
+         * Ex. 1.01
+         */
+        final JPanel panelz = new JPanel();
+        panelz.setLayout(new BoxLayout(panelz, BoxLayout.X_AXIS));
+        frame.setContentPane(panelz);
+        panelz.add(write);
+        /*
          * Handlers
          */
         write.addActionListener(
@@ -90,6 +97,10 @@ public class BadIOGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        /*
+         * Resize the frame to the minimum size
+         */
+        frame.pack();
         /*
          * OK, ready to push the frame onscreen
          */
